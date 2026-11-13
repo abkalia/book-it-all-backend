@@ -3,3 +3,18 @@ server:
 spring:
   application:
     name: backend-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5,0.95,0.99
+cors:
+  allowed-origin: ${ALLOWED_ORIGIN:http://localhost:5173}
+tv-maze-service:
+  base-url: ${BASEURL:https://api.tvmaze.com}
